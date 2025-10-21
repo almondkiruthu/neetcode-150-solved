@@ -5,17 +5,17 @@
 #         self.next = next
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        last=middle=first=None
+        # Reversing a linked list using the 3-sliding pointers technique.
+        third=second=first=None
         if head:
             first = head
+            while first != None:
+                third = second
+                second = first
+                first = first.next
+                second.next = third
+            head = second
+            return head
         else:
             return
-        while first != None:
-            last = middle
-            middle = first
-            first = first.next
-            middle.next = last
-        head = middle
-        return head
-    
         

@@ -38,7 +38,7 @@ class Solution:
             return third
         elif list1 == None and list2:
             return list2
-        elif list1 and list1:
+        elif list1 and list2 == None:
             return list1
         else:
             return

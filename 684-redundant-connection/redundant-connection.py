@@ -49,6 +49,6 @@ class Solution:
         if len(cycle_edges) > 1:
             return cycle_edges[-1]
         elif len(cycle_edges) == 1:
-            return cycle_edges[-1]
+            return cycle_edges.pop()
         else:
             return []

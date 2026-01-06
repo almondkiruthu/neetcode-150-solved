@@ -4,7 +4,7 @@ class Solution:
         num_of_islands = 0
         # Optimize to avoid revisiting ones.
         visited = set()
-        
+
         rows = len(grid)
         cols = len(grid[0])
 
@@ -33,8 +33,8 @@ class Solution:
             for j in range(cols):
                 # Then let's perform our dfs.
                 if grid[i][j] == "1" and (i, j) not in visited:
-                    num_of_islands += 1
                     dfs(i, j)
+                    num_of_islands += 1
 
         return num_of_islands
 

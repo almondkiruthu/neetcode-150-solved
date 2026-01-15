@@ -1,0 +1,37 @@
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        # Validate via row-major traversal
+        for i in range(9):
+            seen = set()
+            for j in range(9):
+                item = board[i][j]
+                if item in seen:
+                    return False
+                elif item != ".":
+                    seen.add(item)
+        # Validate via col-major traversal
+        for i in range(9):
+            seen = set()
+            for j in range(9):
+                item = board[j][i]
+                if item in seen:
+                    return False
+                elif item != ".":
+                    seen.add(item)
+
+        #Validating each box.
+        starts = [(0, 0), (0, 3), (0, 6),
+                  (3, 0), (3, 3), (3, 6),
+                  (6, 0), (6, 3), (6, 6)]
+
+        for i, j in starts:
+            s = set()
+            for row in range(i, i+3):
+                for col in range(j, j+3):
+                    if board[row][col] in s:
+                        return False
+                    elif board[row][col] != ".":
+                        s.add(board[row][col])
+
+        return True
+                    

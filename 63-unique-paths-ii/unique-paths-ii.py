@@ -9,6 +9,7 @@ class Solution:
             if (i, j) in cache:
                 return cache[(i, j)]
             
+            # Make sure to check also that our end goal isn't an obstacle
             if (i == rows - 1) and (j == cols - 1) and obstacleGrid[i][j] != 1:
                 return 1
 

@@ -1,22 +1,17 @@
 class Solution:
     def countSubstrings(self, s: str) -> int:
-        palindrome_count = 0
-        for i in range(len(s)):
-            # odd length palindromes
-            left, right = i, i
-            while left >= 0 and right < len(s) and s[left] == s[right]:
-                # expand from the current character as the center of the palindrome.
-                palindrome_count += 1
-                left -= 1
-                right += 1
-            # even length palindromes.
-            left, right = i, i + 1
-            while left >= 0 and right < len(s) and s[left] == s[right]:
-                palindrome_count += 1
-                # expand from the current character as the center of the palindrome.
-                left -= 1
-                right += 1
-        
-        return palindrome_count
+        def count_substrings(i):
+            if i >= len(s):
+                return 0
 
+            local_count = 0
+            for j in range(i, len(s)):
+                curr_str = s[i:j + 1]
+                if curr_str == curr_str[::-1]:
+                    local_count += 1
+
+            
+            return local_count + count_substrings(i + 1)
         
+        return count_substrings(0)
+

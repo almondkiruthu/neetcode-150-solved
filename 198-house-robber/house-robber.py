@@ -2,16 +2,17 @@ class Solution:
     def rob(self, nums: List[int]) -> int:
         dp = {}
         N = len(nums)
-        # Tabulation we begin from the basecase
-        dp[N] = 0
-        dp[N + 1] = 0
-        dp[N + 2] = 0
+        # space optimize:
+        prev = 0
+        prev2 = 0
         for i in range(N - 1, -1, -1):
-            pick = nums[i] + dp[i + 2]
-            not_pick = 0 + dp[i + 1]
+            pick = nums[i] + prev2
+            not_pick = 0 + prev
+            curr = max(pick, not_pick)
 
-            dp[i] = max(pick, not_pick)
+            prev2 = prev
+            prev = curr
 
-        return dp[0]
+        return prev
         
         
